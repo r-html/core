@@ -1,0 +1,11 @@
+node_modules
+.cache
+build
+
+coverage
+
+dist
+
+*.js
+*.map.js
+*.d.ts

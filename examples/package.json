@@ -1,0 +1,26 @@
+{
+  "name": "@rhtml/example",
+  "version": "0.0.2",
+  "scripts": {
+    "start": "npx parcel ./main/index.html --out-dir build/main",
+    "start-hydrate": "npx parcel ./hydrate/index.html --out-dir build/hydrate",
+    "start-performance": "npx parcel ./performance/index.html --out-dir build/performance"
+  },
+  "dependencies": {
+    "@rhtml/components": "^0.0.117",
+    "@rhtml/experiments": "0.0.117",
+    "@rhtml/graphql": "0.0.117",
+    "@rhtml/hooks": "0.0.117",
+    "@rhtml/operators": "^0.0.117",
+    "@rhtml/renderer": "0.0.117",
+    "@rxdi/core": "^0.7.168",
+    "@rxdi/lit-html": "^0.7.168",
+    "rxjs": "^7.8.0"
+  },
+  "browserslist": [
+    "last 1 chrome versions"
+  ],
+  "devDependencies": {
+    "cssnano": "^4.1.10"
+  }
+}

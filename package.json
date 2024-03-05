@@ -1,0 +1,60 @@
+{
+  "name": "@rhtml/core",
+  "version": "0.0.0",
+  "description": "Reactive HyperText Markup Language",
+  "bolt": {
+    "workspaces": [
+      "packages/*"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
+  "scripts": {
+    "bolt": "npx bolt && rm -rf ./packages/graphql/node_modules/@rxdi/lit-html ./packages/components/node_modules/@rxdi/lit-html ./packages/renderer/node_modules/@rxdi/lit-html ./packages/operators/node_modules/@rxdi/lit-html ./packages/experiments/node_modules/@rxdi/lit-html",
+    "start": "npx parcel ./examples/main/index.html --out-dir build/examples/main",
+    "start-hydrate": "npx parcel ./examples/hydrate/index.html --out-dir build/examples/hydrate",
+    "start-performance": "npx parcel ./examples/performance/index.html --out-dir build/examples/performance",
+    "build-docs": "npx parcel build ./examples/main/index.html --out-dir docs --public-url rhtml && cp ./docs/index.html ./docs/404.html",
+    "patch": "npx bolt ws exec -- npm version patch",
+    "build": "npx bolt ws exec -- npm run build",
+    "publish-packages": "npx bolt ws exec -- npm publish --update-readme --access public",
+    "clean": "git clean -dxf",
+    "test": "npx bolt ws exec -- npm run test",
+    "lint": "npx bolt ws exec -- npm run lint",
+    "lint-fix": "npx bolt ws exec -- npm run lint-fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:rhtml/rhtml.git"
+  },
+  "author": "Kristiyan Tachev",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "husky": "^3.0.9",
+    "@rxdi/bolt": "^0.24.3",
+    "typescript": "^4.3.5",
+    "eslint": "^8.13.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-simple-import-sort": "^5.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
+    "prettier": "^2.0.5",
+    "ts-jest": "25.2.1",
+    "@rhtml/di": "^0.0.128",
+    "jest": "^24.9.0"
+  },
+  "browserslist": [
+    "last 1 chrome versions"
+  ],
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "dependencies": {
+    "fastify": "^4.25.1"
+  }
+}
