@@ -5,14 +5,13 @@
     "module": "commonjs",
     "declaration": true,
     "moduleResolution": "node",
+    "skipLibCheck": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "target": "es6",
     "outDir": "dist",
-    "typeRoots": [
-      "./typings.d.ts"
-    ],
+    "types": [],
     "lib": [
       "es2015",
       "es2016",
@@ -23,10 +22,10 @@
     ]
   },
   "include": [
-    "./typings.d.ts",
     "src/**/*"
   ],
   "exclude": [
-    "node_modules"
+    "./node_modules",
+    "../../node_modules"
   ]
 }
