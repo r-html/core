@@ -1,6 +1,6 @@
 import { RouteOptions } from 'fastify';
 
-import { Route } from './route';
+import { Route } from './route.decorator';
 
 export const GET =
   <T>(url?: string, options?: Partial<RouteOptions>) =>
