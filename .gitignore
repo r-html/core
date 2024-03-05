@@ -6,6 +6,5 @@ coverage
 
 dist
 
-*.js
 *.map.js
 *.d.ts
