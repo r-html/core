@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "sourceMap": true,
+    "module": "commonjs",
+    "declaration": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "target": "es6",
+    "outDir": "dist",
+    "types": [
+      "node"
+    ],
+    "lib": [
+      "es2015",
+      "es2016",
+      "es6",
+      "esnext.asynciterable",
+      "es2017",
+      "dom"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "./node_modules",
+    "../../node_modules"
+  ]
+}

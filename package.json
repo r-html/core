@@ -33,20 +33,24 @@
   "author": "Kristiyan Tachev",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^24.0.18",
-    "husky": "^3.0.9",
+    "@rhtml/di": "^0.0.128",
     "@rxdi/bolt": "^0.24.3",
-    "typescript": "^5.3.3",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^20.11.24",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
     "eslint": "^8.47.0",
     "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-simple-import-sort": "^5.0.0",
-    "@typescript-eslint/eslint-plugin": "^7.1.1",
-    "@typescript-eslint/parser": "^7.1.1",
+    "husky": "^3.0.9",
+    "jest": "^24.9.0",
     "prettier": "^2.0.5",
     "ts-jest": "25.2.1",
-    "@rhtml/di": "^0.0.128",
-    "jest": "^24.9.0"
+    "typescript": "^5.3.3",
+    "@rhtml/schematics": "^0.0.128",
+    "commander": "8.2.0",
+    "esbuild": "0.20.1"
   },
   "browserslist": [
     "last 1 chrome versions"
