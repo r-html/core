@@ -1,6 +1,6 @@
 {
   "name": "@rhtml/cli",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Rhtml CLI tool",
   "scripts": {
     "start": "npx gapi start --local --path=./example/main.ts",
