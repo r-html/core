@@ -59,6 +59,7 @@
   "module": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "dependencies": {
-    "fastify": "^4.26.2"
+    "fastify": "^4.26.2",
+    "mongoose": "^8.2.1"
   }
 }
