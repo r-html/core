@@ -6,6 +6,7 @@ import { Fastify, FastifyModuleOptions } from './fastify.tokens';
 @Module()
 export class FastifyModule {
   public static forRoot(
+    fastifyInstance: typeof fastify,
     options: Partial<FastifyModuleOptions>
   ): ModuleWithProviders<FastifyModule> {
     return {
@@ -14,7 +15,7 @@ export class FastifyModule {
         {
           provide: Fastify,
           useFactory: async () => {
-            const instance = fastify(options);
+            const instance = fastifyInstance(options);
             const plugins = options.plugins || [];
             const schemas = options.schemas || [];
 
