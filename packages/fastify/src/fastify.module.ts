@@ -25,6 +25,9 @@ export class FastifyModule {
             for (const schema of schemas) {
               instance.addSchema(schema);
             }
+            if (options.globalErrorHandler) {
+              instance.setErrorHandler(options.globalErrorHandler(instance));
+            }
             return instance;
           },
         },

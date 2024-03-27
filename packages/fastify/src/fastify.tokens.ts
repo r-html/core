@@ -1,9 +1,12 @@
 import { InjectionToken } from '@rhtml/di';
 import {
+  FastifyError,
   FastifyHttpOptions,
   FastifyInstance,
   FastifyPluginCallback,
   FastifyRegisterOptions,
+  FastifyReply,
+  FastifyRequest,
   FastifySchema,
 } from 'fastify';
 
@@ -17,4 +20,11 @@ export interface FastifyPlugin {
 export interface FastifyModuleOptions extends FastifyHttpOptions<never> {
   plugins: FastifyPlugin[];
   schemas: FastifySchema[];
+  globalErrorHandler: (
+    instance: FastifyInstance
+  ) => (
+    error: FastifyError,
+    request: FastifyRequest,
+    reply: FastifyReply
+  ) => FastifyReply;
 }
