@@ -1,6 +1,6 @@
 {
   "name": "@rhtml/mongoose",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Mongoose module wrapper",
   "scripts": {
     "start": "npx gapi start --local --path=./example/main.ts",
