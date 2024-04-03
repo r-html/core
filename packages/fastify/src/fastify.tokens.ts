@@ -11,8 +11,6 @@ import {
   FastifySchema,
 } from 'fastify';
 
-import { CorsOptions } from './helpers/hooks/cors.hook';
-
 export const Fastify = new InjectionToken<FastifyInstance>();
 export const FastifyListen = new InjectionToken<string>();
 
@@ -33,6 +31,5 @@ export interface FastifyModuleOptions extends FastifyHttpOptions<never> {
   plugins: FastifyPlugin[];
   schemas: FastifySchema[];
   globalErrorHandler: GlobalErrorHandler;
-  cors: CorsOptions;
   server: FastifyListenOptions;
 }
