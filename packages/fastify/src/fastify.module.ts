@@ -1,7 +1,7 @@
 import { Module, ModuleWithProviders } from '@rhtml/di';
 import fastify, { FastifyInstance } from 'fastify';
 
-import { Fastify, FastifyModuleOptions } from './fastify.tokens';
+import { Fastify, FastifyListen, FastifyModuleOptions } from './fastify.tokens';
 import { addSchema, corsHook, globalErrorHandler, pipe } from './helpers';
 
 @Module()
@@ -30,6 +30,14 @@ export class FastifyModule {
               corsHook(options.cors)
             )(instance);
           },
+        },
+
+        {
+          provide: FastifyListen,
+          deps: [Fastify],
+          provideAtEnd: true,
+          useFactory: (instance: FastifyInstance) =>
+            instance.listen(options.server),
         },
       ],
     };

@@ -624,10 +624,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@rhtml/di@^0.0.128":
-  version "0.0.128"
-  resolved "https://registry.yarnpkg.com/@rhtml/di/-/di-0.0.128.tgz#c6d612e156882a629bd270ea2447274eb3194f8b"
-  integrity sha512-GdaTT0OZcIiE6wtUJ1JLQMvsl1xgdwp57bmkfkQcHy4WwnA+cw51RLfFkKsGecfwS5eTkIgGteJ8ID+64K4W+g==
+"@rhtml/di@^0.0.132":
+  version "0.0.132"
+  resolved "https://registry.yarnpkg.com/@rhtml/di/-/di-0.0.132.tgz#5ef136e7c4cae06cb3f1ef72ae5b33504aa4d3c3"
+  integrity sha512-a8RFZhTEdsZdbpZYXC117YzHjvwxbYzwmctEd5MOT8RJpYkIScjoyK35BD2fRMA24n1ZnVSDjJQxgnR+1J6FBQ==
 
 "@rhtml/schematics@^0.0.128":
   version "0.0.128"
