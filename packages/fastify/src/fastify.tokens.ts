@@ -16,7 +16,8 @@ export const FastifyListen = new InjectionToken<string>();
 
 export interface FastifyPlugin {
   module: FastifyPluginCallback;
-  options?: FastifyRegisterOptions<unknown>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  options?: FastifyRegisterOptions<any>;
 }
 
 export type GlobalErrorHandler = (
