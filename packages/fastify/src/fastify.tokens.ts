@@ -10,6 +10,8 @@ import {
   FastifySchema,
 } from 'fastify';
 
+import { CorsOptions } from './helpers/hooks/cors.hook';
+
 export const Fastify = new InjectionToken<FastifyInstance>();
 
 export interface FastifyPlugin {
@@ -17,14 +19,17 @@ export interface FastifyPlugin {
   options?: FastifyRegisterOptions<unknown>;
 }
 
+export type GlobalErrorHandler = (
+  instance: FastifyInstance
+) => (
+  error: FastifyError,
+  request: FastifyRequest,
+  reply: FastifyReply
+) => FastifyReply;
+
 export interface FastifyModuleOptions extends FastifyHttpOptions<never> {
   plugins: FastifyPlugin[];
   schemas: FastifySchema[];
-  globalErrorHandler: (
-    instance: FastifyInstance
-  ) => (
-    error: FastifyError,
-    request: FastifyRequest,
-    reply: FastifyReply
-  ) => FastifyReply;
+  globalErrorHandler: GlobalErrorHandler;
+  cors: CorsOptions;
 }

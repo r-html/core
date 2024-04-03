@@ -1,7 +1,8 @@
 import { Module, ModuleWithProviders } from '@rhtml/di';
-import fastify from 'fastify';
+import fastify, { FastifyInstance } from 'fastify';
 
 import { Fastify, FastifyModuleOptions } from './fastify.tokens';
+import { addSchema, corsHook, globalErrorHandler, pipe } from './helpers';
 
 @Module()
 export class FastifyModule {
@@ -14,21 +15,20 @@ export class FastifyModule {
       providers: [
         {
           provide: Fastify,
-          useFactory: async () => {
-            const instance = fastifyInstance(options);
+          useFactory: async (): Promise<FastifyInstance> => {
+            const instance = await fastifyInstance(options);
             const plugins = options.plugins || [];
             const schemas = options.schemas || [];
 
             for (const plugin of plugins) {
               await instance.register(plugin.module, plugin.options);
             }
-            for (const schema of schemas) {
-              instance.addSchema(schema);
-            }
-            if (options.globalErrorHandler) {
-              instance.setErrorHandler(options.globalErrorHandler(instance));
-            }
-            return instance;
+
+            return pipe(
+              addSchema(schemas),
+              globalErrorHandler(options.globalErrorHandler),
+              corsHook(options.cors)
+            )(instance);
           },
         },
       ],
