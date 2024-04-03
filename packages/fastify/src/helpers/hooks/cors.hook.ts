@@ -19,7 +19,7 @@ export function corsHook(
       if (hostname) {
         res.header('Access-Control-Allow-Origin', hostname.name);
         // res.header('Access-Control-Allow-Headers', hostname.name);
-        res.header('Access-Control-Allow-Methods', hostname.methods);
+        res.header('Access-Control-Allow-Methods', hostname.methods?.join());
       }
       const isPreflight = /options/i.test(req.method);
       if (isPreflight) {
