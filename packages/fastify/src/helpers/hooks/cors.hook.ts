@@ -18,7 +18,7 @@ export function corsHook(
       const hostname = allowedOrigins.find((v) => v.name === req.hostname);
       if (hostname) {
         res.header('Access-Control-Allow-Origin', hostname.name);
-        res.header('Access-Control-Allow-Headers', hostname.name);
+        // res.header('Access-Control-Allow-Headers', hostname.name);
         res.header('Access-Control-Allow-Methods', hostname.methods);
       }
       const isPreflight = /options/i.test(req.method);
