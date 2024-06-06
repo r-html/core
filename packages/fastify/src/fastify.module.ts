@@ -2,7 +2,7 @@ import { Module, ModuleWithProviders } from '@rhtml/di';
 import fastify, { FastifyInstance } from 'fastify';
 
 import { Fastify, FastifyListen, FastifyModuleOptions } from './fastify.tokens';
-import { addSchema, globalErrorHandler, pipe } from './helpers';
+import { addMiddlewares, addSchema, globalErrorHandler, pipe } from './helpers';
 
 @Module()
 export class FastifyModule {
@@ -26,7 +26,8 @@ export class FastifyModule {
 
             return pipe(
               addSchema(schemas),
-              globalErrorHandler(options.globalErrorHandler)
+              globalErrorHandler(options.globalErrorHandler),
+              addMiddlewares(options.middlewares)
             )(instance);
           },
         },
