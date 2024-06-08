@@ -4,7 +4,7 @@ import { FastifyInstance } from 'fastify';
 export type Middleware = (instance: FastifyInstance) => FastifyInstance;
 
 export function addMiddlewares(
-  middlewares: Middleware[]
+  middlewares: Middleware[] = []
 ): Reader<FastifyInstance, FastifyInstance> {
   return (instance) => {
     for (const middleware of middlewares) {

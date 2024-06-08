@@ -27,7 +27,7 @@ export class FastifyModule {
             return pipe(
               addSchema(schemas),
               globalErrorHandler(options.globalErrorHandler),
-              addMiddlewares(options.middlewares)
+              addMiddlewares(options.middlewares || [])
             )(instance);
           },
         },
