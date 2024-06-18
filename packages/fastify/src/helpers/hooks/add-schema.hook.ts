@@ -1,9 +1,8 @@
-import { Reader } from '@rhtml/di';
-import { FastifyInstance, FastifySchema } from 'fastify';
+import { FastifySchema } from 'fastify';
 
-export function addSchema(
-  schemas: FastifySchema[]
-): Reader<FastifyInstance, FastifyInstance> {
+import { Middleware } from '../../fastify.tokens';
+
+export function addSchema(schemas: FastifySchema[]): Middleware {
   return (instance) => {
     for (const schema of schemas) {
       instance.addSchema(schema);

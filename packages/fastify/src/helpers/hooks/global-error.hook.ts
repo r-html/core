@@ -1,11 +1,8 @@
-import { Reader } from '@rhtml/di';
-import { FastifyInstance } from 'fastify';
-
-import { GlobalErrorHandler } from '../../fastify.tokens';
+import { GlobalErrorHandler, Middleware } from '../../fastify.tokens';
 
 export function globalErrorHandler(
   globalErrorHandler: GlobalErrorHandler
-): Reader<FastifyInstance, FastifyInstance> {
+): Middleware {
   return (instance) => {
     if (globalErrorHandler) {
       instance.setErrorHandler(globalErrorHandler(instance));

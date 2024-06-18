@@ -11,8 +11,6 @@ import {
   FastifySchema,
 } from 'fastify';
 
-import { Middleware } from './helpers';
-
 export const Fastify = new InjectionToken<FastifyInstance>();
 export const FastifyListen = new InjectionToken<string>();
 
@@ -37,3 +35,5 @@ export interface FastifyModuleOptions extends FastifyHttpOptions<never> {
   server: FastifyListenOptions;
   middlewares: Middleware[];
 }
+
+export type Middleware = (instance: FastifyInstance) => FastifyInstance;

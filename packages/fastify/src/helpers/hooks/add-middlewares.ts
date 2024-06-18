@@ -1,11 +1,6 @@
-import { Reader } from '@rhtml/di';
-import { FastifyInstance } from 'fastify';
+import { Middleware } from '../../fastify.tokens';
 
-export type Middleware = (instance: FastifyInstance) => FastifyInstance;
-
-export function addMiddlewares(
-  middlewares: Middleware[] = []
-): Reader<FastifyInstance, FastifyInstance> {
+export function addMiddlewares(middlewares: Middleware[] = []): Middleware {
   return (instance) => {
     for (const middleware of middlewares) {
       instance = middleware(instance);
