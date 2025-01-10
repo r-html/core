@@ -1,6 +1,6 @@
 {
   "name": "@rhtml/fastify",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "Fastify module with decorators",
   "scripts": {
     "start": "npx gapi start --local --path=./example/main.ts",
