@@ -41,6 +41,14 @@ import { AmqpModule } from '@rhtml/amqp';
       username: 'amqp user', // AMQP username (default: 'guest')
       password: 'amqp password', // AMQP password (default: 'guest')
       vhost: '', // Virtual host to use (default: empty string)
+      /**
+       * Optional
+       * Set the prefetch count for this channel.
+       * The count given is the maximum number of messages sent over the channel that can be awaiting acknowledgement;
+       * once there are count messages outstanding,
+       * the server will not send more messages on this channel until one or more have been acknowledged.
+       */
+      prefetchCount: 1
     }),
   ],
 })

@@ -1,14 +1,14 @@
 import { Module, ModuleWithProviders } from '@rhtml/di';
-import amqpClient, { Connection, Options } from 'amqplib';
+import amqpClient, { Connection } from 'amqplib';
 
-import { AmqpChannel, AmqpConnection } from './amqp.constants';
+import { AmqpChannel, AmqpConnection, ModuleConfig } from './amqp.constants';
 import { AmqpService } from './amqp.service';
 
 @Module({
   providers: [AmqpService],
 })
 export class AmqpModule {
-  public static forRoot(config: Options.Connect): ModuleWithProviders {
+  public static forRoot(config: ModuleConfig): ModuleWithProviders {
     return {
       module: AmqpModule,
       providers: [
@@ -19,7 +19,13 @@ export class AmqpModule {
         {
           provide: AmqpChannel,
           deps: [AmqpConnection],
-          useFactory: (connection: Connection) => connection.createChannel(),
+          useFactory: async (connection: Connection) => {
+            const channel = await connection.createChannel();
+            if (config.prefetchCount) {
+              await channel.prefetch(config.prefetchCount);
+            }
+            return channel;
+          },
         },
       ],
     };
