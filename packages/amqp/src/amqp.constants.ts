@@ -22,3 +22,5 @@ export interface ModuleConfig extends Options.Connect {
    */
   prefetchCount?: number;
 }
+
+export { Connection } from 'amqplib';
