@@ -12,5 +12,3 @@ export type AmqpConnection = Connection;
  */
 export const AmqpChannel = new InjectionToken<Channel>();
 export type AmqpChannel = Channel;
-
-export type AckCallbackFunction = () => void;

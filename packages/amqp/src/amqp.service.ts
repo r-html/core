@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@rhtml/di';
-import { ConsumeMessage, Options } from 'amqplib';
+import { Channel, ConsumeMessage, Options } from 'amqplib';
 
 import { AmqpChannel } from './amqp.constants';
 
@@ -18,7 +18,7 @@ export class AmqpService {
 
   async subscribe(
     name: string,
-    callback: (msg: ConsumeMessage, ack: () => void) => void,
+    callback: (msg: ConsumeMessage, channel: Channel) => void,
     options?: {
       assertOptions?: Options.AssertQueue;
       consumeOptions?: Options.Consume;
@@ -28,7 +28,7 @@ export class AmqpService {
 
     await this.channel.consume(
       name,
-      (data) => callback(data!, () => this.channel.ack(data!)),
+      (data) => callback(data!, this.channel),
       options?.consumeOptions
     );
   }

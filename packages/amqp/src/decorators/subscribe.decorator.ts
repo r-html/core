@@ -1,5 +1,5 @@
 import { set } from '@rhtml/di';
-import { ConsumeMessage, Options } from 'amqplib';
+import { Options } from 'amqplib';
 
 import { AmqpService } from '../amqp.service';
 
@@ -12,7 +12,6 @@ export const Subscribe =
     name: string;
     consumeOptions?: Options.Consume;
     assertOptions?: Options.AssertQueue;
-    parser?: <T = never>(msg: ConsumeMessage | null) => T;
   }) =>
   (target: T, memberName: string) => {
     const OnInit =
@@ -25,7 +24,7 @@ export const Subscribe =
         const amqpService = set(AmqpService);
         await amqpService.subscribe(
           name,
-          (msg, ack) => target[memberName].call(this, msg, ack),
+          (msg, channel) => target[memberName].call(this, msg, channel),
           { assertOptions, consumeOptions }
         );
         return OnInit.apply(this, args);

@@ -65,7 +65,7 @@ Integrate AMQP with your Fastify controllers for message subscription and publis
 import { Controller, Route } from '@rhtml/fastify';
 import { FastifyRequest } from 'fastify';
 import {
-  AckCallbackFunction,
+  AmqpChannel,
   AmqpService,
   ConsumeMessage,
   Subscribe,
@@ -84,7 +84,7 @@ export class MyController {
       noAck: true, // Automatically acknowledge messages
     },
   })
-  withAutoAcknowledge(data: ConsumeMessage, ack: AckCallbackFunction) {
+  withAutoAcknowledge(data: ConsumeMessage, channel: AmqpChannel) {
     // Parse the incoming message
     const message = JSON.parse(data?.content.toString());
     console.log(message);
@@ -97,13 +97,13 @@ export class MyController {
       noAck: false,
     },
   })
-  withCustomAcknowledge(data: ConsumeMessage, done: AckCallbackFunction) {
+  withCustomAcknowledge(data: ConsumeMessage, channel: AmqpChannel) {
     const message = JSON.parse(data?.content.toString());
 
     setTimeout(() => {
       // Long Running Job can be parsing some file
       console.log(message);
-      done();
+      channel.ack(data!);
     }, 10000);
   }
 
