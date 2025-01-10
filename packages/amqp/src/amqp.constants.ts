@@ -23,4 +23,10 @@ export interface ModuleConfig extends Options.Connect {
   prefetchCount?: number;
 }
 
+export interface SubscribeDecoratorOptions {
+  queue: string;
+  consumeOptions?: Options.Consume;
+  assertOptions?: Options.AssertQueue;
+}
+
 export { Connection } from 'amqplib';

@@ -1,18 +1,14 @@
 import { set } from '@rhtml/di';
-import { Options } from 'amqplib';
 
+import { SubscribeDecoratorOptions } from '../amqp.constants';
 import { AmqpService } from '../amqp.service';
 
 export const Subscribe =
   <T>({
-    name,
+    queue,
     consumeOptions = {},
     assertOptions = {},
-  }: {
-    name: string;
-    consumeOptions?: Options.Consume;
-    assertOptions?: Options.AssertQueue;
-  }) =>
+  }: SubscribeDecoratorOptions) =>
   (target: T, memberName: string) => {
     const OnInit =
       target['OnInit'] ||
@@ -23,7 +19,7 @@ export const Subscribe =
       value: async function (...args: unknown[]) {
         const amqpService = set(AmqpService);
         await amqpService.subscribe(
-          name,
+          queue,
           (msg, channel) => target[memberName].call(this, msg, channel),
           { assertOptions, consumeOptions }
         );
