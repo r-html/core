@@ -20,7 +20,15 @@ export const Subscribe =
         const amqpService = set(AmqpService);
         await amqpService.subscribe(
           queue,
-          (msg, channel) => target[memberName].call(this, msg, channel),
+          async (msg, channel) => {
+            try {
+              await target[memberName].call(this, msg, channel);
+            } catch (e) {
+              console.error(
+                `[Subscription]: queue "${queue}" fail internally inside ${target} ${memberName}`
+              );
+            }
+          },
           { assertOptions, consumeOptions }
         );
         return OnInit.apply(this, args);
