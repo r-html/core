@@ -1,7 +1,8 @@
 import { Inject, Injectable } from '@rhtml/di';
 import { Channel, ConsumeMessage, Options } from 'amqplib';
+import amqpClient, { Connection } from 'amqplib';
 
-import { AmqpChannel } from './amqp.constants';
+import { AmqpChannel, ModuleConfig } from './amqp.constants';
 
 @Injectable()
 export class AmqpService {
@@ -31,5 +32,20 @@ export class AmqpService {
       (data) => callback(data!, this.channel),
       options?.consumeOptions
     );
+  }
+
+  public static createConnection(config: ModuleConfig) {
+    return amqpClient.connect(config);
+  }
+
+  public static async createChannel(
+    connection: Connection,
+    prefetchCount?: number
+  ) {
+    const channel = await connection.createChannel();
+    if (prefetchCount) {
+      await channel.prefetch(prefetchCount);
+    }
+    return channel;
   }
 }

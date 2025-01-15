@@ -25,7 +25,7 @@ export const Subscribe =
               await target[memberName].call(this, msg, channel);
             } catch (e) {
               console.error(
-                `[Subscription]: queue "${queue}" fail internally inside ${target} ${memberName}`
+                `[AMQP][Subscribe]: queue "${queue}" failed to handle internally inside subscription "${memberName}" method`
               );
             }
           },

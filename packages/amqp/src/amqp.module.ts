@@ -14,18 +14,13 @@ export class AmqpModule {
       providers: [
         {
           provide: AmqpConnection,
-          useFactory: () => amqpClient.connect(config),
+          useFactory: () => AmqpService.createConnection(config),
         },
         {
           provide: AmqpChannel,
           deps: [AmqpConnection],
-          useFactory: async (connection: Connection) => {
-            const channel = await connection.createChannel();
-            if (config.prefetchCount) {
-              await channel.prefetch(config.prefetchCount);
-            }
-            return channel;
-          },
+          useFactory: async (connection: Connection) =>
+            AmqpService.createChannel(connection, config.prefetchCount),
         },
       ],
     };
