@@ -18,15 +18,7 @@ export class MongoDbModule {
       providers: [
         {
           provide: MONGOOSE_CONNECTION_TOKEN,
-          useFactory: async () => {
-            try {
-              return await mongooseInstance.connect(url, options);
-            } catch (e) {
-              console.error('Unable to initialize mongodb connection');
-              console.error(e);
-              throw new Error(e);
-            }
-          },
+          useFactory: () => mongooseInstance.connect(url, options),
         },
       ],
     };
