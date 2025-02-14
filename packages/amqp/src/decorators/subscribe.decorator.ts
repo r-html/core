@@ -1,4 +1,4 @@
-import { set } from '@rhtml/di';
+import { get, set } from '@rhtml/di';
 
 import { SubscribeDecoratorOptions } from '../amqp.constants';
 import { AmqpService } from '../amqp.service';
@@ -8,6 +8,7 @@ export const Subscribe =
     queue,
     consumeOptions = {},
     assertOptions = {},
+    channel,
   }: SubscribeDecoratorOptions) =>
   (target: T, memberName: string) => {
     const OnInit =
@@ -18,6 +19,7 @@ export const Subscribe =
     Object.defineProperty(target, 'OnInit', {
       value: async function (...args: unknown[]) {
         const amqpService = set(AmqpService);
+
         await amqpService.subscribe(
           queue,
           async (msg, channel) => {
@@ -29,7 +31,11 @@ export const Subscribe =
               );
             }
           },
-          { assertOptions, consumeOptions }
+          {
+            assertOptions,
+            consumeOptions,
+            channel: channel ? get(channel) : null,
+          }
         );
         return OnInit.apply(this, args);
       },

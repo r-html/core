@@ -27,6 +27,7 @@ export interface SubscribeDecoratorOptions {
   queue: string;
   consumeOptions?: Options.Consume;
   assertOptions?: Options.AssertQueue;
+  channel?: InjectionToken<AmqpChannel>;
 }
 
 export { Connection } from 'amqplib';

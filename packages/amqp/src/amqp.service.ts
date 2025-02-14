@@ -11,10 +11,15 @@ export class AmqpService {
   async publish<T = Record<string, string>>(
     name: string,
     payload: T,
-    options?: Options.AssertQueue
+    options?: {
+      assertOptions?: Options.AssertQueue;
+      channel?: AmqpChannel;
+    }
   ) {
-    await this.channel.assertQueue(name, options);
-    return this.channel.sendToQueue(name, Buffer.from(JSON.stringify(payload)));
+    const channel = options?.channel ?? this.channel;
+
+    await channel.assertQueue(name, options?.assertOptions);
+    return channel.sendToQueue(name, Buffer.from(JSON.stringify(payload)));
   }
 
   async subscribe(
@@ -23,13 +28,15 @@ export class AmqpService {
     options?: {
       assertOptions?: Options.AssertQueue;
       consumeOptions?: Options.Consume;
+      channel?: AmqpChannel;
     }
   ) {
-    await this.channel.assertQueue(name, options?.assertOptions);
+    const channel = options.channel ?? this.channel;
+    await channel.assertQueue(name, options?.assertOptions);
 
-    await this.channel.consume(
+    await channel.consume(
       name,
-      (data) => callback(data!, this.channel),
+      (data) => callback(data!, channel),
       options?.consumeOptions
     );
   }
