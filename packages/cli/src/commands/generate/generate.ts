@@ -14,8 +14,8 @@ export default (options: GenerateOptions) => {
     type = 'module',
   } = options;
   return new AbstractRunner('npx schematics').run(
-    `${schematicsName}:${type} --name=${name} --force=${force} --dryRun=${dryRun} ${
+    `${schematicsName}:${type} --name=${name} --force=${force} --dry-run=${dryRun} ${
       spec ? '--spec' : ''
-    } --language='${language}' --sourceRoot='${folder}' ${internalArguments}`
+    } --language='${language}' --source-root='${folder}' ${internalArguments}`
   );
 };
