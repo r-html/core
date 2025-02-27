@@ -21,7 +21,7 @@
   "dependencies": {},
   "devDependencies": {
     "@types/jest": "^24.0.18",
-    "@rhtml/schematics": "^0.0.128",
+    "@rhtml/schematics": "^0.0.134",
     "jest": "^24.9.0",
     "ts-jest": "25.2.1",
     "typescript": "^5.3.3",
