@@ -26,7 +26,7 @@
     "ts-jest": "25.2.1",
     "typescript": "^5.3.3",
     "commander": "8.2.0",
-    "esbuild": "0.20.1"
+    "esbuild": "0.25.4"
   },
   "author": "Kristiyan Tachev",
   "license": "MIT",
