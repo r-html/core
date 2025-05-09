@@ -1,6 +1,6 @@
 {
   "name": "@rhtml/amqp",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "description": "AMQP module with decorators",
   "scripts": {
     "start": "echo START",
