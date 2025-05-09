@@ -17,13 +17,11 @@
     "type": "git",
     "url": "git@github.com:r-html/rhtml.git"
   },
-  "peerDependencies": {
-    "fastify": "^4.26.2"
-  },
   "dependencies": {},
   "devDependencies": {
     "@types/jest": "^24.0.18",
-    "jest": "^24.9.0",
+    "jest": "^25.2.1",
+    "fastify": "^5.3.2",
     "ts-jest": "25.2.1",
     "@rhtml/di": "^0.0.132",
     "typescript": "^5.3.3"
